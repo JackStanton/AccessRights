@@ -38,8 +38,6 @@ public class CreateUserPane extends JPanel {
         JLabel informLabel = new JLabel("Имя пользователя не может быть короче 4х символов!");
         JPanel informPanel = new JPanel();
 
-
-
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -60,33 +58,23 @@ public class CreateUserPane extends JPanel {
                     } catch (FileNotFoundException | TransformerException | ParserConfigurationException e) {
                         e.printStackTrace();
                     }
-
-
                     MainWindow.delButton();
                     panel.removeAll();
                     add(new WelcomePan(1));
                     MainWindow.paintExit();
-
-
-
                 } else {
                     usernamePanel.setBackground(Color.pink);
                     informPanel.setBackground(Color.pink);
                     updateUI();
                 }
-
             }
         });
-
 
         passwordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
                 PasswordGenerator passwordGenerator = new PasswordGenerator(8);
-
                 String password = passwordGenerator.getPassword().toString();
-
                 passwordPanel.remove(passwordButton);
                 passwordText.setText(password);
                 passwordPanel.add(passwordText);
@@ -97,13 +85,10 @@ public class CreateUserPane extends JPanel {
 
         welcomePanel.add(welcomeLabel);
         informPanel.add(informLabel);
-
         usernamePanel.add(usernameLabel);
         usernamePanel.add(userNameText);
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordButton);
-
-
         panel.add(welcomePanel);
         panel.add(informPanel);
         panel.add(usernamePanel);
@@ -111,7 +96,6 @@ public class CreateUserPane extends JPanel {
         panel.add(createButton);
         add(panel);
         updateUI();
-
     }
 
     private void updateFilesRights(ArrayList<FileObj> array, UserObj user) throws FileNotFoundException, TransformerException, ParserConfigurationException {

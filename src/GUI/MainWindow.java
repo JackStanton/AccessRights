@@ -19,7 +19,6 @@ public class MainWindow extends JFrame {
     private static final int WINDOW_WIDTH = 1100;
     private static final int WINDOW_POSITION_X = 220;
     private static final int WINDOW_POSITION_Y = 100;
-    static int fontSize = 17;
     static JButton exitButton = new JButton("Выход");
     static JButton resetButton = new JButton("Сброс");
     public static JButton backButton = new JButton();
@@ -27,27 +26,18 @@ public class MainWindow extends JFrame {
     static WelcomePan welcomePan;
     static public JScrollPane scrollPane;
     public static String title = "Права доступа";
+
     public MainWindow(){
-
-
-//        XMLWorker.write();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocation(WINDOW_POSITION_X,WINDOW_POSITION_Y);
         setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
         setTitle(title);
-
-
-
-
-
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 System.exit(0);
             }
         });
-
-
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -83,23 +73,17 @@ public class MainWindow extends JFrame {
             }
         });
 
-
-
         paintMain();
         add(scrollPane);
         paintExit();
         add(btnPan,BorderLayout.SOUTH);
         setVisible(true);
-
-
-
     }
 
 
     public static void printReset(){
         int index = search(WelcomePan.users,WelcomePan.autUser);
         String role = getUserRole(WelcomePan.usersList, index);
-
         if (role.equals("admin")){
             resetButton.setVisible(true);
         } else {

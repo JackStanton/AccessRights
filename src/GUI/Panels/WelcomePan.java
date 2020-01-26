@@ -3,8 +3,7 @@ package GUI.Panels;
 import Classes.UserObj;
 import Classes.XMLWorker;
 import GUI.MainWindow;
-import GUI.Panels.DocumentsPane;
-import GUI.UncPass;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +40,6 @@ public class WelcomePan extends JPanel {
         JLabel informLabel = new JLabel();
         JPanel informPanel = new JPanel();
         informPanel.setVisible(false);
-
         if (init  == 1){
             informLabel = new JLabel("Пользоваетль успешно создан");
             informPanel.setBackground(Color.green);
@@ -60,7 +58,6 @@ public class WelcomePan extends JPanel {
             }
         });
 
-
         JLabel finalInformLabel = informLabel;
         enterButton.addActionListener(new ActionListener() {
             @Override
@@ -78,52 +75,33 @@ public class WelcomePan extends JPanel {
                     autUser = usersList.get(userName).getName();
                     MainWindow.printReset();
                 } else {
-//                    new UncPass();
                     finalInformLabel.setText("Неправильно введен пароль!");
                     informPanel.setVisible(true);
                     informPanel.setBackground(Color.pink);
                     panelPass.setBackground(Color.pink);
                 }
-
             }
         });
-
-
-
-
-
-
         welcomePanel.add(welcomeLabel);
         informPanel.add(informLabel);
         panelCombo.add(comboBoxLabel);
         panelCombo.add(comboBox);
         panelPass.add(passLabel);
         panelPass.add(passText);
-
-
-
         panel.add(welcomePanel);
         panel.add(informPanel);
         panel.add(panelCombo);
         panel.add(panelPass);
         panel.add(enterButton);
         panel.add(createUButton);
-
         add(panel);
         updateUI();
-
-
     }
 
     private void getUsers(){
-
         users = new String[usersList.size()];
         for (int i = 0; i < usersList.size(); i++) {
             users[i] = usersList.get(i).getName();
         }
     }
-
-
-
-
 }

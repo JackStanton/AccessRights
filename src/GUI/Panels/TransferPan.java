@@ -20,22 +20,18 @@ public class TransferPan extends JPanel {
     public static ArrayList<FileObj> files = DocumentsPane.files;
     int selectedUser = -1;
     int indexAutUser = -1;
-
-
     String read = DocumentsPane.read;
     String write = DocumentsPane.write;
     String transfer = DocumentsPane.transfer;
     String full = DocumentsPane.full;
     String filename = DocumentsPane.filename;
-
     TransferPan(String authUser){
         this.authUser = authUser;
         removeAll();
         updateUI();
         delAutUser();
         search(users,authUser);
-
-        JLabel titleLable = new JLabel("Выберите пользователя : ");
+        JLabel titleLabel = new JLabel("Выберите пользователя : ");
         JPanel panel = new JPanel(new GridLayout(5,1));
         JPanel panel1 = new JPanel(new GridLayout(1,2));
         JComboBox<String> comboBox = new JComboBox<>(usersTrim);
@@ -57,7 +53,6 @@ public class TransferPan extends JPanel {
                 selectedUser = comboBox.getSelectedIndex();
                 searchSelected(users,selectedUser);
                 listWorker();
-
                 try {
                     XMLWorker.applyRights(files);
                 } catch (TransformerException | FileNotFoundException | ParserConfigurationException e) {
@@ -66,25 +61,18 @@ public class TransferPan extends JPanel {
 
                 files = XMLWorker.parseRights();
                 DocumentsPane.panel.removeAll();
-
                 MainWindow.paintBack(0);
                 removeAll();
                 updateUI();
                 DocumentsPane docPan = new DocumentsPane();
                 add(docPan);
-
-
             }
         });
 
         JPanel btnPanel = new JPanel(new GridLayout(1,2));
-
-
-
-
         btnPanel.add(okButton);
         btnPanel.add(backButton);
-        panel1.add(titleLable);
+        panel1.add(titleLabel);
         panel1.add(comboBox);
         panel.add(panel1);
         panel.add(btnPanel);
@@ -101,7 +89,6 @@ public class TransferPan extends JPanel {
             }
         }
     }
-
 
     private void listWorker(){
         for (int i = 0; i < files.size(); i++) {

@@ -23,25 +23,18 @@ public class DocumentsPane extends JPanel {
     public static String filename = "";
 
     DocumentsPane(){
-
         removeAll();
         updateUI();
-
         files.clear();
         files = XMLWorker.parseRights();
         fileCount = files.size();
-
-
         for (int i = 0; i < fileCount; i++) {
-
             JButton button = new JButton();
             button.setText(files.get(i).getName());
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     MainWindow.delButton();
-
-
                     for (int j = 0; j < files.size(); j++) {
                         if (files.get(j).getName().equals(button.getText())){
                             filename = files.get(j).getName();
@@ -63,7 +56,6 @@ public class DocumentsPane extends JPanel {
             });
             panel.add(button);
         }
-
         add(panel);
         updateUI();
     }

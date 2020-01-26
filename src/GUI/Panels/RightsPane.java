@@ -18,42 +18,32 @@ public class RightsPane extends JPanel {
         JPanel writeP = new JPanel(new GridLayout(1,2));
         JPanel transP = new JPanel(new GridLayout(1,2));
         JPanel fullP = new JPanel(new GridLayout(1,2));
-
         JCheckBox readBox = new JCheckBox();
         readBox.setEnabled(false);
         if (read.equals("true")){readBox.setSelected(true);}else{readBox.setSelected(false);}
-
         JCheckBox writeBox = new JCheckBox();
         writeBox.setEnabled(false);
         if (write.equals("true")){writeBox.setSelected(true);}else{writeBox.setSelected(false);}
-
         JCheckBox transBox = new JCheckBox();
         transBox.setEnabled(false);
         if (transfer.equals("true")){transBox.setSelected(true);}else{transBox.setSelected(false);}
-
         JCheckBox fullBox = new JCheckBox();
         fullBox.setEnabled(false);
         if (full.equals("true")){fullBox.setSelected(true);}else{fullBox.setSelected(false);}
-
         usernameF.add(new JLabel("Имя пользователя :"));
         usernameF.add(new JLabel(username));
-
         nameF.add(new JLabel("Название файла :"));
         nameF.add(new JLabel(file));
-
         readP.add(new JLabel("Чтение : "));
         readP.add(readBox);
-
         writeP.add(new JLabel("Запись : "));
         writeP.add(writeBox);
-
         transP.add(new JLabel("Передача прав : "));
         transP.add(transBox);
-
         fullP.add(new JLabel("Полный доступ : "));
         fullP.add(fullBox);
-
         JButton button = new JButton("Назад");
+
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -72,6 +62,7 @@ public class RightsPane extends JPanel {
         } else {
             transButton.setEnabled(false);
         }
+
         transButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -83,7 +74,6 @@ public class RightsPane extends JPanel {
         });
 
         JPanel buttonPan = new JPanel(new GridLayout(1,2));
-
         panel.add(usernameF);
         panel.add(nameF);
         panel.add(readP);

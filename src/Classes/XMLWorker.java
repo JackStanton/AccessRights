@@ -1,8 +1,6 @@
 package Classes;
 
-import GUI.Panels.TransferPan;
 import org.w3c.dom.*;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,6 +33,7 @@ public  class XMLWorker {
         }
         return list;
     }
+
     public static ArrayList<UserObj> parseUsers() {
         ArrayList<UserObj> list = new ArrayList<UserObj>();
         try {
@@ -57,14 +56,10 @@ public  class XMLWorker {
         return list;
     }
 
-
-    public static void resetRights() throws TransformerException, ParserConfigurationException, FileNotFoundException, ParserConfigurationException {
+    public static void resetRights() throws TransformerException, FileNotFoundException, ParserConfigurationException {
         ArrayList<FileObj> files = parseFiles();
         ArrayList<UserObj> users = parseUsers();
         boolean value = false;
-
-        // здесь создаем документ
-
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder build = factory.newDocumentBuilder();
         Document doc = build.newDocument();
@@ -94,7 +89,7 @@ public  class XMLWorker {
     }
 
     public static ArrayList<FileObj> parseRights() {
-        ArrayList<UserObj> users = new ArrayList<>();
+        ArrayList<UserObj> users;
         ArrayList<FileObj> files = new ArrayList<>();
         try {
             File fXmlFile = new File("usersRights.xml");
@@ -125,12 +120,8 @@ public  class XMLWorker {
         return files;
     }
 
-
-
     public static void applyRights(ArrayList<FileObj> files) throws TransformerException, FileNotFoundException, ParserConfigurationException {
         String value = "";
-
-        // здесь создаем документ
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder build = factory.newDocumentBuilder();
         Document doc = build.newDocument();
@@ -160,10 +151,7 @@ public  class XMLWorker {
         t.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("usersRights.xml")));
     }
 
-
     public static void addUser(ArrayList<UserObj> users) throws ParserConfigurationException, TransformerException, FileNotFoundException {
-        String value = "";
-        // здесь создаем документ
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder build = factory.newDocumentBuilder();
         Document doc = build.newDocument();

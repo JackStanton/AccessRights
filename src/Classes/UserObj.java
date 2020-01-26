@@ -67,16 +67,4 @@ public class UserObj {
     public String getGrant() {
         return grant;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public void setGrant(String grant) {
-        this.grant = grant;
-    }
 }

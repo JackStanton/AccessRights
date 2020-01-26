@@ -1,7 +1,5 @@
 package Classes;
 
-import java.util.Random;
-
 public class PasswordGenerator {
 
     private  StringBuilder password;
