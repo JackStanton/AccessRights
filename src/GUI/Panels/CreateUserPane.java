@@ -23,7 +23,7 @@ public class CreateUserPane extends JPanel {
 
     CreateUserPane(){
 
-        JPanel panel = new JPanel(new GridLayout(5,1));
+        JPanel panel = new JPanel(new GridLayout(6,1));
         JPanel usernamePanel = new JPanel(new GridLayout(1,2));
         JPanel passwordPanel = new JPanel(new GridLayout(1,2));
         JLabel welcomeLabel = new JLabel("Заполните поля ");
@@ -36,7 +36,10 @@ public class CreateUserPane extends JPanel {
         JButton createButton = new JButton("Создать");
         createButton.setVisible(false);
         JLabel informLabel = new JLabel("Имя пользователя не может быть короче 4х символов!");
+        JLabel informLabel1 = new JLabel("Такой пользователь уже существует!");
         JPanel informPanel = new JPanel();
+        JPanel informPanel1 = new JPanel();
+        informLabel1.setVisible(false);
 
         createButton.addActionListener(new ActionListener() {
             @Override
@@ -47,22 +50,31 @@ public class CreateUserPane extends JPanel {
                 String password = passwordText.getText();
                 UserObj user = new UserObj(userName,password,"user");
                 if ((userNameText.getText().length() > 3)){
-                    usersList.add(user);
-                    try {
-                        XMLWorker.addUser(usersList);
-                    } catch (ParserConfigurationException | FileNotFoundException | TransformerException e) {
-                        e.printStackTrace();
+                    if(checkExistUser(usersList, userName)){
+                        usersList.add(user);
+                        try {
+                            XMLWorker.addUser(usersList);
+                        } catch (ParserConfigurationException | FileNotFoundException | TransformerException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            updateFilesRights(files,user);
+                        } catch (FileNotFoundException | TransformerException | ParserConfigurationException e) {
+                            e.printStackTrace();
+                        }
+                        MainWindow.delButton();
+                        panel.removeAll();
+                        add(new WelcomePan(1));
+                        MainWindow.paintExit();
+                    } else {
+                        informLabel1.setVisible(true);
+                        usernamePanel.setBackground(Color.pink);
+                        informPanel1.setBackground(Color.pink);
                     }
-                    try {
-                        updateFilesRights(files,user);
-                    } catch (FileNotFoundException | TransformerException | ParserConfigurationException e) {
-                        e.printStackTrace();
-                    }
-                    MainWindow.delButton();
-                    panel.removeAll();
-                    add(new WelcomePan(1));
-                    MainWindow.paintExit();
+
                 } else {
+                    informLabel1.setVisible(false);
+                    informLabel.setText("Имя пользователя не может быть короче 4х символов!");
                     usernamePanel.setBackground(Color.pink);
                     informPanel.setBackground(Color.pink);
                     updateUI();
@@ -85,12 +97,14 @@ public class CreateUserPane extends JPanel {
 
         welcomePanel.add(welcomeLabel);
         informPanel.add(informLabel);
+        informPanel1.add(informLabel1);
         usernamePanel.add(usernameLabel);
         usernamePanel.add(userNameText);
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordButton);
         panel.add(welcomePanel);
         panel.add(informPanel);
+        panel.add(informPanel1);
         panel.add(usernamePanel);
         panel.add(passwordPanel);
         panel.add(createButton);
@@ -106,5 +120,15 @@ public class CreateUserPane extends JPanel {
             array.get(i).setUsers(tmpUsers);
         }
         XMLWorker.applyRights(array);
+    }
+
+    private boolean checkExistUser(ArrayList<UserObj> list, String username){
+        boolean result = true;
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getName().equals(username)){
+                result = false;
+            }
+        }
+        return result;
     }
 }
