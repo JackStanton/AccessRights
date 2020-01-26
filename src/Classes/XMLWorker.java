@@ -24,11 +24,8 @@ public  class XMLWorker {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
-
             doc.getDocumentElement().normalize();
-
             NodeList nList = doc.getElementsByTagName("file");
-
             for (int i = 0; i < nList.getLength(); i++) {
                 Element nNode = (Element) nList.item(i);
                 String fileName = nNode.getAttribute("name");
