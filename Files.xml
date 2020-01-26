@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="test1.xsl"?>
+<files>
+	<file name="file1">
+	</file>
+	<file name="file2">
+	</file>
+	<file name="file3">
+	</file>
+	<file name="file4">
+	</file>
+	<file name="file5">
+	</file>
+	<file name="file6">
+	</file>
+	<file name="file7">
+	</file>
+	<file name="file8">
+	</file>
+	<file name="file9">
+	</file>
+	<file name="file10">
+	</file>
+	<file name="file11">
+	</file>
+	<file name="file12">
+	</file>
+	<file name="file13">
+	</file>
+	<file name="file14">
+	</file>
+	<file name="file15">
+	</file>
+</files>
