@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AccessRights:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AccessRights_jar</output-path>
+    <root id="archive" name="AccessRights.jar">
+      <element id="module-output" name="AccessRights" />
+    </root>
+  </artifact>
+</component>
