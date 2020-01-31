@@ -1,7 +1,7 @@
 package GUI.Panels;
 
+import Classes.DBWorker;
 import Classes.FileObj;
-import Classes.XMLWorker;
 import GUI.MainWindow;
 
 import javax.swing.*;
@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TransferPan extends JPanel {
@@ -52,19 +53,21 @@ public class TransferPan extends JPanel {
             public void actionPerformed(ActionEvent actionEvent) {
                 selectedUser = comboBox.getSelectedIndex();
                 searchSelected(users,selectedUser);
-                listWorker();
                 try {
-                    XMLWorker.applyRights(files);
-                } catch (TransformerException | FileNotFoundException | ParserConfigurationException e) {
+                    DBWorker.applyRights(authUser,selectedUser,filename);
+                } catch (SQLException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-
-                files = XMLWorker.parseRights();
                 DocumentsPane.panel.removeAll();
                 MainWindow.paintBack(0);
                 removeAll();
                 updateUI();
-                DocumentsPane docPan = new DocumentsPane();
+                DocumentsPane docPan = null;
+                try {
+                    docPan = new DocumentsPane(authUser);
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 add(docPan);
             }
         });
@@ -90,20 +93,20 @@ public class TransferPan extends JPanel {
         }
     }
 
-    private void listWorker(){
-        for (int i = 0; i < files.size(); i++) {
-            if (files.get(i).getName().equals(filename)){
-                if (!files.get(i).getUsers().get(selectedUser).getTransfer().equals("true")){files.get(i).getUsers().get(selectedUser).setTransfer(files.get(i).getUsers().get(indexAutUser).getTransfer());}
-                if (!files.get(i).getUsers().get(selectedUser).getRead().equals("true")){files.get(i).getUsers().get(selectedUser).setRead(files.get(i).getUsers().get(indexAutUser).getRead());}
-                if (!files.get(i).getUsers().get(selectedUser).getWrite().equals("true")){files.get(i).getUsers().get(selectedUser).setWrite(files.get(i).getUsers().get(indexAutUser).getWrite());}
-                if (!files.get(i).getUsers().get(selectedUser).getFull().equals("true")){files.get(i).getUsers().get(selectedUser).setFull(files.get(i).getUsers().get(indexAutUser).getFull());}
-                files.get(i).getUsers().get(indexAutUser).setFull("false");
-                files.get(i).getUsers().get(indexAutUser).setRead("false");
-                files.get(i).getUsers().get(indexAutUser).setWrite("false");
-                files.get(i).getUsers().get(indexAutUser).setTransfer("false");
-            }
-        }
-    }
+//    private void listWorker(){
+//        for (int i = 0; i < files.size(); i++) {
+//            if (files.get(i).getName().equals(filename)){
+//                if (!files.get(i).getUsers().get(selectedUser).getTransfer().equals("true")){files.get(i).getUsers().get(selectedUser).setTransfer(files.get(i).getUsers().get(indexAutUser).getTransfer());}
+//                if (!files.get(i).getUsers().get(selectedUser).getRead().equals("true")){files.get(i).getUsers().get(selectedUser).setRead(files.get(i).getUsers().get(indexAutUser).getRead());}
+//                if (!files.get(i).getUsers().get(selectedUser).getWrite().equals("true")){files.get(i).getUsers().get(selectedUser).setWrite(files.get(i).getUsers().get(indexAutUser).getWrite());}
+//                if (!files.get(i).getUsers().get(selectedUser).getFull().equals("true")){files.get(i).getUsers().get(selectedUser).setFull(files.get(i).getUsers().get(indexAutUser).getFull());}
+//                files.get(i).getUsers().get(indexAutUser).setFull("false");
+//                files.get(i).getUsers().get(indexAutUser).setRead("false");
+//                files.get(i).getUsers().get(indexAutUser).setWrite("false");
+//                files.get(i).getUsers().get(indexAutUser).setTransfer("false");
+//            }
+//        }
+//    }
 
     private void search(String[] array, String authUser){
         for (int i = 0; i < users.length; i++) {

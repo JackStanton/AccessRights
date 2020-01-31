@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class RightsPane extends JPanel {
     RightsPane(String username, String read, String write, String transfer, String full, String file){
@@ -51,7 +52,12 @@ public class RightsPane extends JPanel {
                 MainWindow.paintBack(0);
                 removeAll();
                 updateUI();
-                DocumentsPane docPan = new DocumentsPane();
+                DocumentsPane docPan = null;
+                try {
+                    docPan = new DocumentsPane(username);
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 add(docPan);
             }
         });

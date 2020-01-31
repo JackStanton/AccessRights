@@ -13,7 +13,7 @@ public class EncryptionUntil {
     public static void generateKey() throws NoSuchAlgorithmException, IOException {
 
             final KeyPairGenerator keyGen = KeyPairGenerator.getInstance(ALGORITHM);
-            keyGen.initialize(4096);
+            keyGen.initialize(128);
             final KeyPair key = keyGen.generateKeyPair();
 
             File privateKeyFile = new File(PRIVATE_KEY_FILE);
@@ -39,8 +39,10 @@ public class EncryptionUntil {
     public static byte[] encrypt(String text) throws IOException, ClassNotFoundException {
         KeyPair key = getKey();
         byte[] cipherText = null;
+
         try {
             final Cipher cipher = Cipher.getInstance(ALGORITHM);
+
             cipher.init(Cipher.ENCRYPT_MODE, key.getPublic());
             cipherText = cipher.doFinal(text.getBytes());
         } catch (Exception e) {

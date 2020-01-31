@@ -4,6 +4,7 @@ public class UserObj {
     private String name;
     private String pass;
     private String grant;
+    private int id;
 
     private String write = "false";
     private String read = "false";
@@ -50,7 +51,8 @@ public class UserObj {
         this.full = full;
     }
 
-    public UserObj(String name, String pass, String grant) {
+    public UserObj(int id, String name, String pass, String grant) {
+        this.id = id;
         this.name = name;
         this.pass = pass;
         this.grant = grant;
@@ -66,5 +68,9 @@ public class UserObj {
 
     public String getGrant() {
         return grant;
+    }
+
+    public int getId() {
+        return id;
     }
 }

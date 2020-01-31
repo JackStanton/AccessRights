@@ -1,13 +1,14 @@
 package GUI.Panels;
 
+import Classes.DBWorker;
 import Classes.FileObj;
-import Classes.XMLWorker;
 import GUI.MainWindow;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DocumentsPane extends JPanel {
@@ -22,15 +23,17 @@ public class DocumentsPane extends JPanel {
     public static String full = "";
     public static String filename = "";
 
-    DocumentsPane(){
+    DocumentsPane(String autUser) throws SQLException, ClassNotFoundException {
+
         removeAll();
         updateUI();
         files.clear();
-        files = XMLWorker.parseRights();
+        files = DBWorker.readRights();
         fileCount = files.size();
         for (int i = 0; i < fileCount; i++) {
             JButton button = new JButton();
             button.setText(files.get(i).getName());
+
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -39,7 +42,7 @@ public class DocumentsPane extends JPanel {
                         if (files.get(j).getName().equals(button.getText())){
                             filename = files.get(j).getName();
                             for (int k = 0; k < files.get(j).getUsers().size(); k++) {
-                                if (files.get(j).getUsers().get(k).getName().equals(WelcomePan.autUser)){
+                                if (files.get(j).getUsers().get(k).getName().equals(autUser)){
                                     read = files.get(j).getUsers().get(k).getRead();
                                     write = files.get(j).getUsers().get(k).getWrite();
                                     transfer = files.get(j).getUsers().get(k).getTransfer();
@@ -48,7 +51,7 @@ public class DocumentsPane extends JPanel {
                             }
                         }
                     }
-                    RightsPane rightsPane = new RightsPane(WelcomePan.autUser, read,write,transfer,full,filename);
+                    RightsPane rightsPane = new RightsPane(autUser, read,write,transfer,full,filename);
                     removeAll();
                     updateUI();
                     add(rightsPane);

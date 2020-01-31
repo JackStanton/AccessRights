@@ -3,11 +3,18 @@ package Classes;
 import java.util.ArrayList;
 
 public class FileObj {
+    private int id;
     private String name;
-    private ArrayList<UserObj> users = new ArrayList<UserObj>();
+    private ArrayList<UserObj> users;
 
-    public FileObj(String name){
-    this.name = name;
+    public FileObj(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    public FileObj(String name, ArrayList<UserObj> users){
+        this.name = name;
+        this.users = users;
     }
 
     public ArrayList<UserObj> getUsers() {
@@ -18,12 +25,13 @@ public class FileObj {
         this.users = users;
     }
 
-    public FileObj(String name, ArrayList<UserObj> users){
-        this.name = name;
-        this.users = users;
-    }
+
 
     public String getName(){
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 }

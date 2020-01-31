@@ -1,7 +1,7 @@
 package GUI.Panels;
 
+import Classes.DBWorker;
 import Classes.UserObj;
-import Classes.XMLWorker;
 import GUI.MainWindow;
 
 
@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class WelcomePan extends JPanel {
@@ -18,11 +19,12 @@ public class WelcomePan extends JPanel {
     JComboBox<String> comboBox;
     JPasswordField passText;
     public static ArrayList<UserObj> usersList;
-    public static String autUser;
+    private String autUser;
+    public static String autUser1;
     public static DocumentsPane documentsPane;
 
-    public WelcomePan(int init){
-        usersList = XMLWorker.parseUsers();
+    public WelcomePan(int init) throws SQLException, ClassNotFoundException {
+        usersList = DBWorker.readUsers();
         removeAll();
         updateUI();
         getUsers();
@@ -65,15 +67,22 @@ public class WelcomePan extends JPanel {
                 String password = String.copyValueOf(passText.getPassword());
                 int userName = comboBox.getSelectedIndex();
 
+                autUser = usersList.get(userName).getName();
+                autUser1 = autUser;
                 if (usersList.get(userName).getPass().equals(password)){
-                    documentsPane = new DocumentsPane();
+                    try {
+                        documentsPane = new DocumentsPane(autUser);
+                    } catch (SQLException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     removeAll();
                     updateUI();
                     add(documentsPane);
                     MainWindow.delButton();
                     MainWindow.paintBack(0);
-                    autUser = usersList.get(userName).getName();
+
                     MainWindow.printReset();
+
                 } else {
                     finalInformLabel.setText("Неправильно введен пароль!");
                     informPanel.setVisible(true);
@@ -96,6 +105,7 @@ public class WelcomePan extends JPanel {
         panel.add(createUButton);
         add(panel);
         updateUI();
+
     }
 
     private void getUsers(){
