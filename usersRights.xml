@@ -8,6 +8,10 @@
         <user full="false" read="true" transfer="true" username="User4" write="true"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file2">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -17,6 +21,10 @@
         <user full="true" read="true" transfer="true" username="User4" write="true"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file3">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -26,6 +34,10 @@
         <user full="false" read="true" transfer="true" username="User4" write="false"/>
         <user full="false" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="false" transfer="false" username="Edik" write="false"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file4">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -35,6 +47,10 @@
         <user full="false" read="false" transfer="false" username="User4" write="false"/>
         <user full="false" read="true" transfer="true" username="User5" write="true"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file5">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -44,6 +60,10 @@
         <user full="false" read="false" transfer="false" username="User4" write="false"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="false" transfer="false" username="Edik" write="false"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file6">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -53,6 +73,10 @@
         <user full="false" read="false" transfer="false" username="User4" write="false"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="true" transfer="true" username="Edik" write="false"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file7">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -62,6 +86,10 @@
         <user full="false" read="false" transfer="true" username="User4" write="false"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="true" transfer="true" username="Edik" write="false"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file8">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -71,6 +99,10 @@
         <user full="false" read="true" transfer="true" username="User4" write="false"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="true" transfer="true" username="Edik" write="false"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file9">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -80,6 +112,10 @@
         <user full="false" read="true" transfer="true" username="User4" write="true"/>
         <user full="false" read="true" transfer="true" username="User5" write="true"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file10">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -89,6 +125,10 @@
         <user full="false" read="true" transfer="true" username="User4" write="true"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file11">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -98,6 +138,10 @@
         <user full="false" read="false" transfer="true" username="User4" write="false"/>
         <user full="true" read="true" transfer="true" username="User5" write="true"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file12">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -107,6 +151,10 @@
         <user full="false" read="true" transfer="true" username="User4" write="true"/>
         <user full="false" read="true" transfer="true" username="User5" write="true"/>
         <user full="false" read="true" transfer="true" username="Edik" write="false"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file13">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -116,6 +164,10 @@
         <user full="false" read="false" transfer="false" username="User4" write="false"/>
         <user full="false" read="true" transfer="true" username="User5" write="false"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file14">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -125,6 +177,10 @@
         <user full="true" read="true" transfer="true" username="User4" write="true"/>
         <user full="false" read="false" transfer="true" username="User5" write="false"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
     <file filename="file15">
         <user full="true" read="true" transfer="true" username="Admin" write="true"/>
@@ -134,5 +190,9 @@
         <user full="false" read="true" transfer="true" username="User4" write="true"/>
         <user full="false" read="false" transfer="false" username="User5" write="false"/>
         <user full="true" read="true" transfer="true" username="Edik" write="true"/>
+        <user full="false" read="false" transfer="false" username="Usertest" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwerty" write="false"/>
+        <user full="false" read="false" transfer="false" username="qwertyu" write="false"/>
     </file>
 </files>

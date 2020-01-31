@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CreateUserPane extends JPanel {
@@ -54,7 +55,7 @@ public class CreateUserPane extends JPanel {
                         usersList.add(user);
                         try {
                             XMLWorker.addUser(usersList);
-                        } catch (ParserConfigurationException | FileNotFoundException | TransformerException e) {
+                        } catch (ParserConfigurationException | TransformerException | ClassNotFoundException | IOException e) {
                             e.printStackTrace();
                         }
                         try {

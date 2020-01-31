@@ -10,7 +10,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public  class XMLWorker {
     public static ArrayList<FileObj> parseFiles() {
@@ -48,6 +50,7 @@ public  class XMLWorker {
                 String userName = nNode.getAttribute("username");
                 String userPass = nNode.getAttribute("pass");
                 String userGrant = nNode.getAttribute("grant");
+
                 UserObj user = new UserObj(userName,userPass,userGrant);
                 list.add(user);
             }
@@ -105,6 +108,7 @@ public  class XMLWorker {
                 for (int j = 0; j < userList.getElementsByTagName("user").getLength(); j++) {
                     Element user = (Element) userList.getElementsByTagName("user").item(j);
                     String username = user.getAttribute("username");
+
                     String write = user.getAttribute("write");
                     String read = user.getAttribute("read");
                     String transfer = user.getAttribute("transfer");
@@ -151,7 +155,7 @@ public  class XMLWorker {
         t.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("usersRights.xml")));
     }
 
-    public static void addUser(ArrayList<UserObj> users) throws ParserConfigurationException, TransformerException, FileNotFoundException {
+    public static void addUser(ArrayList<UserObj> users) throws ParserConfigurationException, TransformerException, IOException, ClassNotFoundException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder build = factory.newDocumentBuilder();
         Document doc = build.newDocument();
@@ -159,15 +163,16 @@ public  class XMLWorker {
         doc.appendChild(rootElement);
         for (int i = 0; i < users.size(); i++) {
             Element user = doc.createElement("user");
-            user.setAttribute("username",users.get(i).getName());
-            user.setAttribute("pass",users.get(i).getPass());
-            user.setAttribute("grant",users.get(i).getGrant());
+            user.setAttribute("username", new String(EncryptionUntil.encrypt(users.get(i).getName())));
+            user.setAttribute("pass",new String(EncryptionUntil.encrypt(users.get(i).getPass())));
+            user.setAttribute("grant",new String(EncryptionUntil.encrypt(users.get(i).getGrant())));
             rootElement.appendChild(user);
         }
         Transformer t = TransformerFactory.newInstance().newTransformer();
         t.setOutputProperty(OutputKeys.INDENT, "yes");
         t.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("Users.xml")));
     }
+
     private static boolean rand(String str){
         double a = 0;
         boolean newValue = false;
