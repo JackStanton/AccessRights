@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class MainWindow extends JFrame {
     private static final int WINDOW_HEIGHT = 700;
     private static final int WINDOW_WIDTH = 1100;
+
     private static final int WINDOW_POSITION_X = 220;
     private static final int WINDOW_POSITION_Y = 100;
     static JButton exitButton = new JButton("Выход");
