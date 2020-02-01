@@ -1,28 +1,31 @@
 
-import Classes.DBWorker;
-import Classes.EncryptionUntil;
-import GUI.MainWindow;
-import org.sqlite.core.DB;
+import Classes.VBSUtility;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.IOException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.util.Base64;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
-    public static void main(String[] args) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException, IOException, ClassNotFoundException, SQLException {
-        DBWorker.conn();
-        new MainWindow();
+//    public static void main(String[] args) throws Exception {
+//        DBWorker.conn();
+
+//        new MainWindow();
 //        EncryptionUntil.generateKey();
 //        DBWorker.resetRights();
 //        String str = "200";
 //        str = Base64.getEncoder().encodeToString(str.getBytes());
 //        System.out.println(new String(str));
+//    }
+
+
+    public static void main(String[] args) {
+        String[] propNames = new String[] { "Name","MaxClockSpeed", "ProcessorId"};
+        Map<String, String> map = VBSUtility.printComputerSystemProductInfo(propNames);
+        System.getProperty("user.name");
+        for (int i = 0; i < map.size(); i++) {
+            System.out.println(propNames[i]+" "+map.get(propNames[i]));
+        }
     }
 
 }
