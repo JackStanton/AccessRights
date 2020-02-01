@@ -24,7 +24,6 @@ public class DocumentsPane extends JPanel {
     public static String filename = "";
 
     DocumentsPane(String autUser) throws SQLException, ClassNotFoundException {
-
         removeAll();
         updateUI();
         files.clear();
