@@ -1,10 +1,12 @@
 package Classes;
 
+import javax.print.attribute.HashAttributeSet;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 
 public class DBWorker {
     public static Connection conn;
@@ -152,6 +154,17 @@ public class DBWorker {
 
         }
     }
+
+    public static HashMap<String, String> readAut() throws SQLException {
+        resSet = statmt.executeQuery("SELECT * FROM aut");
+        String username = String.valueOf(resSet.getString("username"));
+        String cpuId = String.valueOf(resSet.getString("cpuId"));
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("username", username);
+        map.put("cpuID", cpuId);
+        return map;
+    }
+
 
     // --------Закрытие--------
     public static void closeDB() throws ClassNotFoundException, SQLException
