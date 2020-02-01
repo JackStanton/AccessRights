@@ -126,9 +126,6 @@ public class DBWorker {
             transfer = (resSet.getBoolean("transfer"))?"1":"0";
             full = (resSet.getBoolean("full"))?"1":"0";
         }
-        System.out.println(newUser);
-        System.out.println(oldId);
-        System.out.println(fileId);
         statmt.executeUpdate("UPDATE  rights SET 'userID' = \'"+newUser+"\','fileID' = \'"+fileId+"\','write' = \'"+write+"\','read' = \'"+read+"\','transfer' = \'"+transfer+"\','full'= \'"+full+"\' WHERE fileID = \'"+fileId+"\' AND userID = \'"+newUser+"\' ");
         statmt.executeUpdate("UPDATE  rights SET 'userID' = "+oldId+",'fileID' = "+fileId+",'write' = false,'read' = false,'transfer' = false,'full'= false WHERE fileID = "+fileId+" AND userID = "+oldId+" ");
     }
