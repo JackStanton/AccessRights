@@ -15,32 +15,16 @@ public class UserObj {
         return write;
     }
 
-    public void setWrite(String write) {
-        this.write = write;
-    }
-
     public String getRead() {
         return read;
-    }
-
-    public void setRead(String read) {
-        this.read = read;
     }
 
     public String getTransfer() {
         return transfer;
     }
 
-    public void setTransfer(String transfer) {
-        this.transfer = transfer;
-    }
-
     public String getFull() {
         return full;
-    }
-
-    public void setFull(String full) {
-        this.full = full;
     }
 
     public UserObj(String name, String write, String read, String transfer, String full) {

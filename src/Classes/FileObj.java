@@ -21,12 +21,6 @@ public class FileObj {
         return users;
     }
 
-    public void setUsers(ArrayList<UserObj> users) {
-        this.users = users;
-    }
-
-
-
     public String getName(){
         return name;
     }

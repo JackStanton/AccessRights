@@ -1,9 +1,5 @@
 package Classes;
 
-import javax.naming.PartialResultException;
-import javax.swing.*;
-import java.io.File;
-import java.net.UnknownServiceException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -24,9 +20,7 @@ public class DBWorker {
     public static ArrayList<UserObj> readUsers() throws ClassNotFoundException, SQLException
     {
         ArrayList<UserObj> list = new ArrayList<UserObj>();
-
         resSet = statmt.executeQuery("SELECT * FROM users");
-
         while(resSet.next()){
             int id = resSet.getInt("id");
             String username = resSet.getString("username");
@@ -41,9 +35,7 @@ public class DBWorker {
     public static ArrayList<FileObj> readFiles() throws ClassNotFoundException, SQLException
     {
         ArrayList<FileObj> list = new ArrayList<FileObj>();
-
         resSet = statmt.executeQuery("SELECT * FROM files");
-
         while(resSet.next()){
             int id = resSet.getInt("id");
             String filename = resSet.getString("filename");
@@ -62,7 +54,6 @@ public class DBWorker {
             for (int j = 0; j < users.size(); j++) {
                 int userID = users.get(j).getId();
                 int fileID = files.get(i).getId();
-
                 boolean write = false;
                 boolean read = false;
                 boolean transfer = false;
@@ -88,14 +79,12 @@ public class DBWorker {
         ArrayList<FileObj> list = new ArrayList<FileObj>();
         ArrayList<FileObj> files = readFiles();
         ArrayList<UserObj> users = readUsers();
-
         int usrID = -1;
         String username = "";
         String write = "";
         String read = "";
         String transfer = "";
         String full = "";
-
         for (int i = 0; i < files.size(); i++) {
             int flID = files.get(i).getId();
             resSet = statmt.executeQuery("SELECT * FROM rights WHERE fileID = "+flID+" ");
@@ -115,12 +104,10 @@ public class DBWorker {
         return list;
     }
 
-
     public static void addUser(String user, String pas1, String gr) throws SQLException, ClassNotFoundException {
         statmt.execute("INSERT INTO users ('id','username','password','role') VALUES (?,\'"+user+"\',\'"+pas1+"\',\'"+gr+"\')");
         updateRights(user);
     }
-
 
     public static void applyRights(String oldUser, int newUser, String file) throws SQLException, ClassNotFoundException {
         ArrayList<UserObj> users = readUsers();
@@ -134,15 +121,17 @@ public class DBWorker {
 
         resSet = statmt.executeQuery("SELECT * FROM rights WHERE fileID = "+fileId+" AND userID = "+oldId+" ");
         while(resSet.next()){
-            write = String.valueOf(resSet.getBoolean("write"));
-            read = String.valueOf(resSet.getBoolean("read"));
-            transfer = String.valueOf(resSet.getBoolean("transfer"));
-            full = String.valueOf(resSet.getBoolean("full"));
+            write = (resSet.getBoolean("write"))?"1":"0";
+            read = (resSet.getBoolean("read"))?"1":"0";
+            transfer = (resSet.getBoolean("transfer"))?"1":"0";
+            full = (resSet.getBoolean("full"))?"1":"0";
         }
-        statmt.execute("UPDATE  rights SET 'userID' = \'"+newUser+"\','fileID' = \'"+fileId+"\','write' = \'"+write+"\','read' = \'"+read+"\','transfer' = \'"+transfer+"\','full'= \'"+full+"\' WHERE fileID = \'"+fileId+"\' AND userID = \'"+newUser+"\' ");
-        statmt.execute("UPDATE  rights SET 'userID' = "+oldId+",'fileID' = "+fileId+",'write' = false,'read' = false,'transfer' = false,'full'= false WHERE fileID = "+fileId+" AND userID = "+oldId+" ");
+        System.out.println(newUser);
+        System.out.println(oldId);
+        System.out.println(fileId);
+        statmt.executeUpdate("UPDATE  rights SET 'userID' = \'"+newUser+"\','fileID' = \'"+fileId+"\','write' = \'"+write+"\','read' = \'"+read+"\','transfer' = \'"+transfer+"\','full'= \'"+full+"\' WHERE fileID = \'"+fileId+"\' AND userID = \'"+newUser+"\' ");
+        statmt.executeUpdate("UPDATE  rights SET 'userID' = "+oldId+",'fileID' = "+fileId+",'write' = false,'read' = false,'transfer' = false,'full'= false WHERE fileID = "+fileId+" AND userID = "+oldId+" ");
     }
-
 
     private static void updateRights(String username) throws SQLException, ClassNotFoundException {
         ArrayList<UserObj> users = readUsers();

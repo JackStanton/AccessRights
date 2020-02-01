@@ -2,6 +2,7 @@ package GUI.Panels;
 
 import Classes.DBWorker;
 import Classes.FileObj;
+import Classes.UserObj;
 import GUI.MainWindow;
 
 import javax.swing.*;
@@ -52,9 +53,14 @@ public class TransferPan extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 selectedUser = comboBox.getSelectedIndex();
-                searchSelected(users,selectedUser);
+                int selectedId = 0;
                 try {
-                    DBWorker.applyRights(authUser,selectedUser,filename);
+                    selectedId = searchSelected(selectedUser);
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    DBWorker.applyRights(authUser,selectedId,filename);
                 } catch (SQLException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -93,20 +99,6 @@ public class TransferPan extends JPanel {
         }
     }
 
-//    private void listWorker(){
-//        for (int i = 0; i < files.size(); i++) {
-//            if (files.get(i).getName().equals(filename)){
-//                if (!files.get(i).getUsers().get(selectedUser).getTransfer().equals("true")){files.get(i).getUsers().get(selectedUser).setTransfer(files.get(i).getUsers().get(indexAutUser).getTransfer());}
-//                if (!files.get(i).getUsers().get(selectedUser).getRead().equals("true")){files.get(i).getUsers().get(selectedUser).setRead(files.get(i).getUsers().get(indexAutUser).getRead());}
-//                if (!files.get(i).getUsers().get(selectedUser).getWrite().equals("true")){files.get(i).getUsers().get(selectedUser).setWrite(files.get(i).getUsers().get(indexAutUser).getWrite());}
-//                if (!files.get(i).getUsers().get(selectedUser).getFull().equals("true")){files.get(i).getUsers().get(selectedUser).setFull(files.get(i).getUsers().get(indexAutUser).getFull());}
-//                files.get(i).getUsers().get(indexAutUser).setFull("false");
-//                files.get(i).getUsers().get(indexAutUser).setRead("false");
-//                files.get(i).getUsers().get(indexAutUser).setWrite("false");
-//                files.get(i).getUsers().get(indexAutUser).setTransfer("false");
-//            }
-//        }
-//    }
 
     private void search(String[] array, String authUser){
         for (int i = 0; i < users.length; i++) {
@@ -116,12 +108,16 @@ public class TransferPan extends JPanel {
         }
     }
 
-    private void searchSelected(String[] array, int select){
+    private int searchSelected(int select) throws SQLException, ClassNotFoundException {
+
         String name = usersTrim[select];
-        for (int i = 0; i < users.length; i++) {
-            if (users[i].equals(name)){
-                selectedUser = i;
+        ArrayList<UserObj> userList = DBWorker.readUsers();
+        int index = -1;
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getName().equals(name)){
+                index = userList.get(i).getId();
             }
         }
+        return index;
     }
 }

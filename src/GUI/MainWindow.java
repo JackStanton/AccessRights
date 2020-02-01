@@ -77,6 +77,11 @@ public class MainWindow extends JFrame {
                 } catch (SQLException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+                try {
+                    DBWorker.resetRights();
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
                 add(scrollPane);
                 paintExit();
                 add(btnPan,BorderLayout.SOUTH);
