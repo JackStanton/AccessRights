@@ -95,17 +95,6 @@ public class MainWindow extends JFrame {
         setVisible(true);
     }
 
-
-    public static void printReset(){
-        int index = search(WelcomePan.users,WelcomePan.autUser1);
-        String role = getUserRole(WelcomePan.usersList, index);
-        if (role.equals("admin")){
-            resetButton.setVisible(true);
-        } else {
-            resetButton.setVisible(false);
-        }
-    }
-
     private static int search(String[] array, String authUser){
         int index = -1;
         for (int i = 0; i < array.length; i++) {
@@ -138,10 +127,11 @@ public class MainWindow extends JFrame {
         }
         if (init == 0) {
             backButton.setText("Сменить пользователя");
-            resetButton.setVisible(true);
+            int index = search(WelcomePan.users,WelcomePan.autUser1);
+            String role = getUserRole(WelcomePan.usersList, index);
+            btnPan.add(backButton, BorderLayout.SOUTH);
+            if (role.equals("admin")){btnPan.add(resetButton, BorderLayout.SOUTH);}
         }
-        btnPan.add(backButton, BorderLayout.SOUTH);
-        btnPan.add(resetButton, BorderLayout.SOUTH);
         btnPan.updateUI();
     }
 

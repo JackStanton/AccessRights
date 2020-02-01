@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Base64;
 
 public class Main {
 
@@ -19,6 +20,9 @@ public class Main {
         new MainWindow();
 //        EncryptionUntil.generateKey();
 //        DBWorker.resetRights();
+//        String str = "200";
+//        str = Base64.getEncoder().encodeToString(str.getBytes());
+//        System.out.println(new String(str));
     }
 
 }

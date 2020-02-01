@@ -81,8 +81,6 @@ public class WelcomePan extends JPanel {
                     MainWindow.delButton();
                     MainWindow.paintBack(0);
 
-                    MainWindow.printReset();
-
                 } else {
                     finalInformLabel.setText("Неправильно введен пароль!");
                     informPanel.setVisible(true);
@@ -105,7 +103,6 @@ public class WelcomePan extends JPanel {
         panel.add(createUButton);
         add(panel);
         updateUI();
-
     }
 
     private void getUsers(){

@@ -19,7 +19,6 @@ public class TransferPan extends JPanel {
     String[] users = WelcomePan.users;
     String[] usersTrim = new String[users.length-1];
     String authUser = "";
-    public static ArrayList<FileObj> files = DocumentsPane.files;
     int selectedUser = -1;
     int indexAutUser = -1;
     String read = DocumentsPane.read;
@@ -98,7 +97,6 @@ public class TransferPan extends JPanel {
             }
         }
     }
-
 
     private void search(String[] array, String authUser){
         for (int i = 0; i < users.length; i++) {

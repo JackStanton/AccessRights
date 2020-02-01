@@ -1,7 +1,10 @@
 package Classes;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class DBWorker {
     public static Connection conn;
@@ -16,7 +19,6 @@ public class DBWorker {
         statmt = conn.createStatement();
     }
 
-
     public static ArrayList<UserObj> readUsers() throws ClassNotFoundException, SQLException
     {
         ArrayList<UserObj> list = new ArrayList<UserObj>();
@@ -25,6 +27,8 @@ public class DBWorker {
             int id = resSet.getInt("id");
             String username = resSet.getString("username");
             String password = resSet.getString("password");
+            byte[] passEnc = Base64.getDecoder().decode(password);
+            password = new String(passEnc);
             String role = resSet.getString("role");
             UserObj user = new UserObj(id, username,password,role);
             list.add(user);
@@ -104,7 +108,9 @@ public class DBWorker {
         return list;
     }
 
-    public static void addUser(String user, String pas1, String gr) throws SQLException, ClassNotFoundException {
+    public static void addUser(String user, String pas1, String gr) throws SQLException, ClassNotFoundException, IOException {
+        byte[] passEnc = pas1.getBytes();
+        pas1 = Base64.getEncoder().encodeToString(passEnc);
         statmt.execute("INSERT INTO users ('id','username','password','role') VALUES (?,\'"+user+"\',\'"+pas1+"\',\'"+gr+"\')");
         updateRights(user);
     }

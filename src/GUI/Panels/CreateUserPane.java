@@ -57,7 +57,7 @@ public class CreateUserPane extends JPanel {
                         usersList.add(user);
                         try {
                             DBWorker.addUser(userName,password,"user");
-                        } catch (SQLException | ClassNotFoundException e) {
+                        } catch (SQLException | ClassNotFoundException | IOException e) {
                             e.printStackTrace();
                         }
                         MainWindow.delButton();
@@ -113,7 +113,6 @@ public class CreateUserPane extends JPanel {
         add(panel);
         updateUI();
     }
-
 
     private boolean checkExistUser(ArrayList<UserObj> list, String username){
         boolean result = true;

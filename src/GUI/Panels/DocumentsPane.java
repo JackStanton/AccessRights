@@ -40,8 +40,6 @@ public class DocumentsPane extends JPanel {
                     for (int j = 0; j < files.size(); j++) {
                         if (files.get(j).getName().equals(button.getText())){
                             filename = files.get(j).getName();
-                            System.out.println(files.get(j).getId());
-                            System.out.println(files.get(j).getName());
                             for (int k = 0; k < files.get(j).getUsers().size(); k++) {
                                 if (files.get(j).getUsers().get(k).getName().equals(autUser)){
                                     read = files.get(j).getUsers().get(k).getRead();
