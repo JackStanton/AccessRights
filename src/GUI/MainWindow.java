@@ -1,7 +1,7 @@
 package GUI;
 
+import Classes.DBWorker;
 import Classes.UserObj;
-import Classes.XMLWorker;
 import GUI.Panels.DocumentsPane;
 import GUI.Panels.WelcomePan;
 
@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MainWindow extends JFrame {
@@ -28,7 +29,7 @@ public class MainWindow extends JFrame {
     static public JScrollPane scrollPane;
     public static String title = "Права доступа";
 
-    public MainWindow(){
+    public MainWindow() throws SQLException, ClassNotFoundException {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocation(WINDOW_POSITION_X,WINDOW_POSITION_Y);
         setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
@@ -45,7 +46,11 @@ public class MainWindow extends JFrame {
                 delButton();
                 DocumentsPane.panel.removeAll();
                 remove(scrollPane);
-                paintMain();
+                try {
+                    paintMain();
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 add(scrollPane);
                 paintExit();
                 add(btnPan,BorderLayout.SOUTH);
@@ -57,17 +62,26 @@ public class MainWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    XMLWorker.resetRights();
-                } catch (TransformerException | ParserConfigurationException | FileNotFoundException e) {
+                    DBWorker.resetRights();
+                } catch (ClassNotFoundException | SQLException e) {
                     e.printStackTrace();
                 }
-                    scrollPane.setEnabled(false);
+                scrollPane.setEnabled(false);
                     Inform inform = new Inform();
                     inform.setVisible(true);
                 delButton();
                 DocumentsPane.panel.removeAll();
                 remove(scrollPane);
-                paintMain();
+                try {
+                    paintMain();
+                } catch (SQLException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    DBWorker.resetRights();
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
                 add(scrollPane);
                 paintExit();
                 add(btnPan,BorderLayout.SOUTH);
@@ -79,17 +93,6 @@ public class MainWindow extends JFrame {
         paintExit();
         add(btnPan,BorderLayout.SOUTH);
         setVisible(true);
-    }
-
-
-    public static void printReset(){
-        int index = search(WelcomePan.users,WelcomePan.autUser);
-        String role = getUserRole(WelcomePan.usersList, index);
-        if (role.equals("admin")){
-            resetButton.setVisible(true);
-        } else {
-            resetButton.setVisible(false);
-        }
     }
 
     private static int search(String[] array, String authUser){
@@ -124,14 +127,15 @@ public class MainWindow extends JFrame {
         }
         if (init == 0) {
             backButton.setText("Сменить пользователя");
-            resetButton.setVisible(true);
+            int index = search(WelcomePan.users,WelcomePan.autUser1);
+            String role = getUserRole(WelcomePan.usersList, index);
+            btnPan.add(backButton, BorderLayout.SOUTH);
+            if (role.equals("admin")){btnPan.add(resetButton, BorderLayout.SOUTH);}
         }
-        btnPan.add(backButton, BorderLayout.SOUTH);
-        btnPan.add(resetButton, BorderLayout.SOUTH);
         btnPan.updateUI();
     }
 
-    public static void paintMain(){
+    public static void paintMain() throws SQLException, ClassNotFoundException {
         welcomePan = new WelcomePan(0);
         scrollPane = new JScrollPane(welcomePan);
         scrollPane.getVerticalScrollBar().setValue(1);

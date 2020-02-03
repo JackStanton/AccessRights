@@ -1,9 +1,6 @@
 package GUI.Panels;
 
-import Classes.FileObj;
-import Classes.PasswordGenerator;
-import Classes.UserObj;
-import Classes.XMLWorker;
+import Classes.*;
 import GUI.MainWindow;
 import com.sun.tools.javac.Main;
 
@@ -17,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CreateUserPane extends JPanel {
@@ -44,27 +43,30 @@ public class CreateUserPane extends JPanel {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ArrayList<UserObj> usersList = XMLWorker.parseUsers();
-                ArrayList<FileObj> files = XMLWorker.parseRights();
+                ArrayList<UserObj> usersList = null;
+                try {
+                    usersList = DBWorker.readUsers();
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
                 String userName = userNameText.getText();
                 String password = passwordText.getText();
-                UserObj user = new UserObj(userName,password,"user");
+                UserObj user = new UserObj(-1,userName,password,"user");
                 if ((userNameText.getText().length() > 3)){
                     if(checkExistUser(usersList, userName)){
                         usersList.add(user);
                         try {
-                            XMLWorker.addUser(usersList);
-                        } catch (ParserConfigurationException | FileNotFoundException | TransformerException e) {
-                            e.printStackTrace();
-                        }
-                        try {
-                            updateFilesRights(files,user);
-                        } catch (FileNotFoundException | TransformerException | ParserConfigurationException e) {
+                            DBWorker.addUser(userName,password,"user");
+                        } catch (SQLException | ClassNotFoundException | IOException e) {
                             e.printStackTrace();
                         }
                         MainWindow.delButton();
                         panel.removeAll();
-                        add(new WelcomePan(1));
+                        try {
+                            add(new WelcomePan(1));
+                        } catch (SQLException | ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
                         MainWindow.paintExit();
                     } else {
                         informLabel1.setVisible(true);
@@ -110,16 +112,6 @@ public class CreateUserPane extends JPanel {
         panel.add(createButton);
         add(panel);
         updateUI();
-    }
-
-    private void updateFilesRights(ArrayList<FileObj> array, UserObj user) throws FileNotFoundException, TransformerException, ParserConfigurationException {
-        ArrayList<UserObj> tmpUsers;
-        for (int i = 0; i < array.size(); i++) {
-            tmpUsers = array.get(i).getUsers();
-            tmpUsers.add(user);
-            array.get(i).setUsers(tmpUsers);
-        }
-        XMLWorker.applyRights(array);
     }
 
     private boolean checkExistUser(ArrayList<UserObj> list, String username){

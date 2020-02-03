@@ -4,6 +4,7 @@ public class UserObj {
     private String name;
     private String pass;
     private String grant;
+    private int id;
 
     private String write = "false";
     private String read = "false";
@@ -14,32 +15,16 @@ public class UserObj {
         return write;
     }
 
-    public void setWrite(String write) {
-        this.write = write;
-    }
-
     public String getRead() {
         return read;
-    }
-
-    public void setRead(String read) {
-        this.read = read;
     }
 
     public String getTransfer() {
         return transfer;
     }
 
-    public void setTransfer(String transfer) {
-        this.transfer = transfer;
-    }
-
     public String getFull() {
         return full;
-    }
-
-    public void setFull(String full) {
-        this.full = full;
     }
 
     public UserObj(String name, String write, String read, String transfer, String full) {
@@ -50,7 +35,8 @@ public class UserObj {
         this.full = full;
     }
 
-    public UserObj(String name, String pass, String grant) {
+    public UserObj(int id, String name, String pass, String grant) {
+        this.id = id;
         this.name = name;
         this.pass = pass;
         this.grant = grant;
@@ -66,5 +52,9 @@ public class UserObj {
 
     public String getGrant() {
         return grant;
+    }
+
+    public int getId() {
+        return id;
     }
 }
