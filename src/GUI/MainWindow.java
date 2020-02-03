@@ -121,17 +121,19 @@ public class MainWindow extends JFrame {
 
     public static void paintBack(int init){
 
+        String role = "";
         if (init == 1){
             backButton.setText("Назад");
             resetButton.setVisible(false);
         }
         if (init == 0) {
             backButton.setText("Сменить пользователя");
+            resetButton.setVisible(true);
             int index = search(WelcomePan.users,WelcomePan.autUser1);
-            String role = getUserRole(WelcomePan.usersList, index);
-            btnPan.add(backButton, BorderLayout.SOUTH);
-            if (role.equals("admin")){btnPan.add(resetButton, BorderLayout.SOUTH);}
+            role = getUserRole(WelcomePan.usersList, index);
         }
+        btnPan.add(backButton, BorderLayout.SOUTH);
+        if (role.equals("admin")){btnPan.add(resetButton, BorderLayout.SOUTH);}
         btnPan.updateUI();
     }
 
