@@ -155,14 +155,18 @@ public class DBWorker {
         }
     }
 
-    public static HashMap<String, String> readAut() throws SQLException {
+    public static ArrayList<String[]> readAut() throws SQLException {
         resSet = statmt.executeQuery("SELECT * FROM aut");
-        String username = String.valueOf(resSet.getString("username"));
-        String cpuId = String.valueOf(resSet.getString("cpuId"));
-        HashMap<String, String> map = new HashMap<String, String>();
-        map.put("username", username);
-        map.put("cpuID", cpuId);
-        return map;
+        String[] array = new String[2];
+        ArrayList<String[]> list = new ArrayList<>();
+        while(resSet.next()){
+            String username = String.valueOf(resSet.getString("username"));
+            String cpuId = String.valueOf(resSet.getString("cpuId"));
+            array[0] = username;
+            array[1] = cpuId;
+            list.add(array);
+        }
+        return list;
     }
 
 
