@@ -157,11 +157,11 @@ public class DBWorker {
 
     public static ArrayList<String[]> readAut() throws SQLException {
         resSet = statmt.executeQuery("SELECT * FROM aut");
-        String[] array = new String[2];
         ArrayList<String[]> list = new ArrayList<>();
         while(resSet.next()){
             String username = String.valueOf(resSet.getString("username"));
             String cpuId = String.valueOf(resSet.getString("cpuId"));
+            String[] array = new String[2];
             array[0] = username;
             array[1] = cpuId;
             list.add(array);

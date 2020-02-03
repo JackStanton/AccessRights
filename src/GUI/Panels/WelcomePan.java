@@ -126,15 +126,18 @@ public class WelcomePan extends JPanel {
     }
 
     private boolean checkProp() throws SQLException {
+        boolean tmp = false;
         String[] propNames = new String[] { "Name","MaxClockSpeed", "ProcessorId"};
         Map<String, String> systemMap = VBSUtility.printComputerSystemProductInfo(propNames);
         ArrayList<String[]> autList = DBWorker.readAut();
         String systemUserName = System.getProperty("user.name");
         String systemCpuId = systemMap.get("ProcessorId");
         for (int i = 0; i < autList.size(); i++) {
-            return (autList.get(i)[0].equals(systemUserName)&&autList.get(i)[1].equals(systemCpuId));
+            if (autList.get(i)[0].equals(systemUserName)&&autList.get(i)[1].equals(systemCpuId)){
+                 tmp = true;
+                 break;
+             }
         }
-        return false;
+        return tmp;
     }
-
 }
