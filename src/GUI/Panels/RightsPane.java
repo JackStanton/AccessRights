@@ -9,10 +9,14 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 public class RightsPane extends JPanel {
+
+    public static TransferPan transferPan;
+    public static JPanel panel;
+
     RightsPane(String username, String read, String write, String transfer, String full, String file){
-        removeAll();
+        panel = new JPanel(new GridLayout(7,1));
         updateUI();
-        JPanel panel = new JPanel(new GridLayout(7,1));
+        panel.removeAll();
         JPanel usernameF = new JPanel(new GridLayout(1,2));
         JPanel nameF = new JPanel(new GridLayout(1,2));
         JPanel readP = new JPanel(new GridLayout(1,2));
@@ -48,17 +52,11 @@ public class RightsPane extends JPanel {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                DocumentsPane.panel.removeAll();
+
                 MainWindow.paintBack(0);
-                removeAll();
                 updateUI();
-                DocumentsPane docPan = null;
-                try {
-                    docPan = new DocumentsPane(username);
-                } catch (SQLException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                add(docPan);
+                MainWindow.welcomePan.remove(DocumentsPane.rightsPane);
+                WelcomePan.documentsPane.setVisible(true);
             }
         });
 
@@ -72,8 +70,8 @@ public class RightsPane extends JPanel {
         transButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                panel.removeAll();
-                TransferPan transferPan = new TransferPan(username);
+                panel.setVisible(false);
+                transferPan = new TransferPan(username);
                 add(transferPan);
                 updateUI();
             }

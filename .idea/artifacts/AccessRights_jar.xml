@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/AccessRights_jar</output-path>
     <root id="archive" name="AccessRights.jar">
       <element id="module-output" name="AccessRights" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/willena/sqlite-jdbc/3.31.1/sqlite-jdbc-3.31.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="SQLite - db.db" uuid="d5ef2391-ab1a-46cc-a4fe-5a88a52fa25e">
+    <data-source source="LOCAL" name="db.db" uuid="69bf2b44-0186-4320-b474-516f3d283bcf">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\sasha\OneDrive\Документы\IdeaProjects\AccessRights\db.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.db</jdbc-url>
     </data-source>
   </component>
 </project>

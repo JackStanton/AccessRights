@@ -125,6 +125,7 @@ public class WelcomePan extends JPanel {
         }
     }
 
+
     private boolean checkProp() throws SQLException {
         boolean tmp = false;
         String[] propNames = new String[] { "Name","MaxClockSpeed", "ProcessorId"};

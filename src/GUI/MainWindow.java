@@ -25,7 +25,7 @@ public class MainWindow extends JFrame {
     static JButton resetButton = new JButton("Сброс");
     public static JButton backButton = new JButton();
     static public JPanel btnPan = new JPanel();
-    static WelcomePan welcomePan;
+    public static WelcomePan welcomePan;
     static public JScrollPane scrollPane;
     public static String title = "Права доступа";
 

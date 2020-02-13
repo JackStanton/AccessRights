@@ -5,6 +5,7 @@ import Classes.FileObj;
 import Classes.UserObj;
 import GUI.MainWindow;
 
+import javax.print.Doc;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TransferPan extends JPanel {
+
     String[] users = WelcomePan.users;
     String[] usersTrim = new String[users.length-1];
     String authUser = "";
@@ -27,6 +29,7 @@ public class TransferPan extends JPanel {
     String full = DocumentsPane.full;
     String filename = DocumentsPane.filename;
     TransferPan(String authUser){
+        remove(WelcomePan.documentsPane);
         this.authUser = authUser;
         removeAll();
         updateUI();
@@ -41,10 +44,8 @@ public class TransferPan extends JPanel {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                RightsPane rightsPane = new RightsPane(authUser,read,write,transfer,full,filename);
-                removeAll();
-                updateUI();
-                add(rightsPane);
+                DocumentsPane.rightsPane.remove(RightsPane.transferPan);
+                RightsPane.panel.setVisible(true);
             }
         });
 
@@ -63,17 +64,12 @@ public class TransferPan extends JPanel {
                 } catch (SQLException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                DocumentsPane.panel.removeAll();
+                MainWindow.welcomePan.remove(DocumentsPane.rightsPane);
+                DocumentsPane.rightsPane.remove(RightsPane.transferPan);
+                WelcomePan.documentsPane.setVisible(true);
                 MainWindow.paintBack(0);
-                removeAll();
                 updateUI();
-                DocumentsPane docPan = null;
-                try {
-                    docPan = new DocumentsPane(authUser);
-                } catch (SQLException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                add(docPan);
+
             }
         });
 

@@ -16,15 +16,16 @@ public class DocumentsPane extends JPanel {
     static int fileCount = -1;
     static int cols = 5;
     static int rows = fileCount / cols;
-    public static JPanel panel = new JPanel(new GridLayout(rows,cols));
+    public static JPanel panel;
     public static String read = "";
     public static String write = "";
     public static String transfer = "";
     public static String full = "";
     public static String filename = "";
+    public static RightsPane rightsPane;
 
     DocumentsPane(String autUser) throws SQLException, ClassNotFoundException {
-        removeAll();
+        panel = new JPanel(new GridLayout(rows,cols));
         updateUI();
         files.clear();
         files = DBWorker.readRights();
@@ -35,6 +36,7 @@ public class DocumentsPane extends JPanel {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
+                    WelcomePan.documentsPane.setVisible(false);
                     MainWindow.delButton();
                     for (int j = 0; j < files.size(); j++) {
                         if (files.get(j).getName().equals(button.getText())){
@@ -49,10 +51,9 @@ public class DocumentsPane extends JPanel {
                             }
                         }
                     }
-                    RightsPane rightsPane = new RightsPane(autUser, read,write,transfer,full,filename);
-                    removeAll();
+                    rightsPane = new RightsPane(autUser, read,write,transfer,full,filename);
                     updateUI();
-                    add(rightsPane);
+                    MainWindow.welcomePan.add(rightsPane);
                 }
             });
             panel.add(button);
@@ -60,4 +61,5 @@ public class DocumentsPane extends JPanel {
         add(panel);
         updateUI();
     }
+
 }
